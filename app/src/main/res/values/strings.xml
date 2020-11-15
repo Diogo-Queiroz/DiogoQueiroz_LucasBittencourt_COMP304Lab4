@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DiogoQueirozAndLucasBittencourt_COMP304Lab4</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="insert_patient">Insert Patient</string>
+    <string name="text_nurse">Display Nurse</string>
+    <string name="patient_id">Patient Id</string>
+    <string name="nurse_name">Nurse Name</string>
+    <string name="nurse_id">Nurse Id</string>
 </resources>

@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "Main Activity";
     private PatientViewModel patientViewModel;
     private Button btnInsertPatient;
-    private EditText editTextPatientId, editTextPatientName;
+    private EditText editTextPatientId, editTextPatientFirstName, editTextPatientLastName,
+            editTextPatientDepartment, editTextPatientRoom;
     private EditText editTextNurseId, editTextNurseName;
     private TextView textViewDisplayPatient, textViewDisplayNurse;
     Patient patient;
@@ -69,10 +70,19 @@ public class MainActivity extends AppCompatActivity
     public void insertPatient(View view)
     {
         editTextPatientId = findViewById(R.id.editTextPatientId);
-        patient.setPatientsId(Integer.parseInt(editTextPatientId.getText().toString()));
+        editTextPatientFirstName = findViewById(R.id.editTextPatientFirstName);
+        editTextPatientLastName = findViewById(R.id.editTextPatientLastName);
+        editTextPatientDepartment = findViewById(R.id.editTextPatientDepartment);
+        editTextPatientRoom = findViewById(R.id.editTextPatientRoom);
+        editTextNurseId = findViewById(R.id.editTextNurseId);
 
-        editTextPatientName = findViewById(R.id.editTextPatientName);
-        patient.setFirstName(editTextPatientName.getText().toString());
+        patient.setPatientsId(Integer.parseInt(editTextPatientId.getText().toString()));
+        patient.setFirstName(editTextPatientFirstName.getText().toString());
+        patient.setLastName(editTextPatientLastName.getText().toString());
+        patient.setDepartment(editTextPatientDepartment.getText().toString());
+        patient.setRoom(editTextPatientRoom.getText().toString());
+        patient.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
+
         patientViewModel.insertPatient(patient);
         patients.child(String.valueOf(patient.getPatientsId())).setValue(patient);
 

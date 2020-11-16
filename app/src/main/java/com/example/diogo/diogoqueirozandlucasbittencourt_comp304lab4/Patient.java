@@ -1,13 +1,16 @@
 package com.example.diogo.diogoqueirozandlucasbittencourt_comp304lab4;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Patient
 {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
     @ColumnInfo(name = "patientsId")
     private int patientsId;
 
@@ -17,12 +20,25 @@ public class Patient
     @ColumnInfo(name = "lastName")
     private String lastName;
 
+    @ColumnInfo(name = "department")
+    private String department;
+
+    @ColumnInfo(name = "room")
+    private String room;
+
+    @ForeignKey(entity = Nurse.class, parentColumns = "nurseId", childColumns = "nurseId")
+    private int nurseId;
+
     public Patient(){}
-    public Patient(int patientsId, String firstName, String lastName)
+    public Patient(int patientsId, String firstName, String lastName,
+                   String department, String room, int nurseId)
     {
         this.patientsId = patientsId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.department = department;
+        this.room = room;
+        this.nurseId = nurseId;
     }
 
     public int getPatientsId()
@@ -46,5 +62,29 @@ public class Patient
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    public String getDepartment()
+    {
+        return department;
+    }
+    public void setDepartment(String department)
+    {
+        this.department = department;
+    }
+    public String getRoom()
+    {
+        return room;
+    }
+    public void setRoom(String room)
+    {
+        this.room = room;
+    }
+    public int getNurseId()
+    {
+        return nurseId;
+    }
+    public void setNurseId(int nurseId)
+    {
+        this.nurseId = nurseId;
     }
 }

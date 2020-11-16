@@ -7,8 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class PatientViewModel
-    extends AndroidViewModel
+public class PatientViewModel extends AndroidViewModel
 {
     private TestRoomRepository mRepository;
 

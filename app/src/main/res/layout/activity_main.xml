@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Enter Nurse Id"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
     </LinearLayout>
     <LinearLayout
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Enter Patient ID"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
     </LinearLayout>
     <LinearLayout

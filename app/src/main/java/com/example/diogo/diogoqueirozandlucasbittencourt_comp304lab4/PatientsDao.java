@@ -13,6 +13,6 @@ public interface PatientsDao
     @Insert
     void insert(Patient patient);
 
-    @Query("select * from Patient order by name")
+    @Query("select * from Patient order by firstName")
     LiveData<List<Patient>> getAllPatients();
 }

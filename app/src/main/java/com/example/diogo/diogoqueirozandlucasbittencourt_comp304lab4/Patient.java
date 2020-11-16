@@ -11,14 +11,18 @@ public class Patient
     @ColumnInfo(name = "patientsId")
     private int patientsId;
 
-    @ColumnInfo(name = "name")
-    private String name;
+    @ColumnInfo(name = "firstName")
+    private String firstName;
+
+    @ColumnInfo(name = "lastName")
+    private String lastName;
 
     public Patient(){}
-    public Patient(int patientsId, String name)
+    public Patient(int patientsId, String firstName, String lastName)
     {
         this.patientsId = patientsId;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public int getPatientsId()
@@ -29,12 +33,18 @@ public class Patient
     {
         this.patientsId = patientsId;
     }
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
     }
-    public void setName(String name)
+    public void setFirstName(String firstName)
     {
-        this.name = name;
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

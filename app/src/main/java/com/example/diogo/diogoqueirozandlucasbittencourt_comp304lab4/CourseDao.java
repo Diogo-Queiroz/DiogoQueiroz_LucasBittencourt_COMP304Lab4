@@ -10,7 +10,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
-@Entity
+@Dao
 public interface CourseDao
 {
     //

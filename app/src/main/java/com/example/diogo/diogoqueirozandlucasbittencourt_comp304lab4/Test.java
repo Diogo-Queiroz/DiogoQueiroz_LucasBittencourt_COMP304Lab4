@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-@Entity(tableName = "test",
+@Entity(tableName = "tests",
         primaryKeys = { "patientsId", "nurseId" },
         foreignKeys = {
             @ForeignKey(entity =  Patient.class, parentColumns = "patientsId", childColumns = "patientsId"),

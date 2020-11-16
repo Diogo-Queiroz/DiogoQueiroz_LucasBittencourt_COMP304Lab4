@@ -13,14 +13,18 @@ public class Nurse
     @ColumnInfo(name = "nurseId")
     private int nurseId;
 
-    @ColumnInfo(name = "name")
-    private String name;
+    @ColumnInfo(name = "firstName")
+    private String firstName;
+
+    @ColumnInfo(name = "lastName")
+    private String lastName;
 
     public Nurse(){}
-    public Nurse(int nurseId, String name)
+    public Nurse(int nurseId, String firstName, String lastName)
     {
         this.nurseId = nurseId;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public int getNurseId()
@@ -31,12 +35,18 @@ public class Nurse
     {
         this.nurseId = nurseId;
     }
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
     }
-    public void setName(String name)
+    public void setFirstName(String firstName)
     {
-        this.name = name;
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

@@ -13,13 +13,13 @@ public interface TestDao
     @Insert
     void insert(Test test);
 
-    @Query("select * from patient inner join test on " +
-            "patient.patientsId=test.patientsId where " +
-            "test.nurseId=:nurseId")
+    @Query("select * from patient inner join tests on " +
+            "patient.patientsId=tests.patientsId where " +
+            "tests.nurseId=:nurseId")
     LiveData<List<Patient>> getPatientForNurse(int nurseId);
 
-    @Query("select * from nurse inner join test on " +
-            "nurse.nurseId=test.nurseId where " +
-            "test.patientsId=:patientsId")
+    @Query("select * from nurse inner join tests on " +
+            "nurse.nurseId=tests.nurseId where " +
+            "tests.patientsId=:patientsId")
     LiveData<List<Nurse>> getTestPerStudent(int patientsId);
 }

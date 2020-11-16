@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity
     private TextView textViewDisplayPatient, textViewDisplayNurse;
     Patient patient;
     Nurse nurse;
+    FirebaseDatabase database;
+    DatabaseReference ref;
+    DatabaseReference patients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity
 
         textViewDisplayPatient = findViewById(R.id.textViewAllPatients);
         textViewDisplayNurse = findViewById(R.id.textViewAllNurses);
-
+        btnInsertPatient = findViewById(R.id.btnInsertPatient);
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
         patient = new Patient();
         nurse = new Nurse();
@@ -54,11 +57,14 @@ public class MainActivity extends AppCompatActivity
                 String output = "";
                 for (Patient patient : patients)
                 {
-                    output += patient.getName() + "\n";
+                    output += patient.getFirstName() + "\n";
                 }
                 textViewDisplayPatient.setText(output);
             }
         });
+
+
+
     }
     public void insertPatient(View view)
     {
@@ -66,9 +72,10 @@ public class MainActivity extends AppCompatActivity
         patient.setPatientsId(Integer.parseInt(editTextPatientId.getText().toString()));
 
         editTextPatientName = findViewById(R.id.editTextPatientName);
-        patient.setName(editTextPatientName.getText().toString());
-
+        patient.setFirstName(editTextPatientName.getText().toString());
         patientViewModel.insertPatient(patient);
+        patients.child(String.valueOf(patient.getPatientsId())).setValue(patient);
+
     }
 
     public void insertNurse(View view)
@@ -77,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         nurse.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
 
         editTextNurseName = findViewById(R.id.editTextNurseName);
-        nurse.setName(editTextNurseName.getText().toString());
+        nurse.setFirstName(editTextNurseName.getText().toString());
 
         patientViewModel.insertNurse(nurse);
     }
@@ -90,7 +97,7 @@ public class MainActivity extends AppCompatActivity
                 String  output="";
 
                 for(Patient patient : patients) {
-                    output += patient.getName() +"\n";
+                    output += patient.getFirstName() +"\n";
                 }
                 textViewDisplayPatient.setText(output);
             }
@@ -102,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                 String  output="";
 
                 for(Nurse nurse : nurses) {
-                    output += nurse.getName() +"\n";
+                    output += nurse.getFirstName() +"\n";
                 }
                 textViewDisplayNurse.setText(output);
             }
@@ -112,11 +119,13 @@ public class MainActivity extends AppCompatActivity
     // Firebase write and read from database realtime
     public void writeIntoDatabase()
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("message");
-        DatabaseReference patients = database.getReference("patients");
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("message");
+        patients = database.getReference("patients");
 
         //ref.setValue("Hello, World");
+
+
 
         patients.addValueEventListener(new ValueEventListener()
         {
@@ -126,7 +135,7 @@ public class MainActivity extends AppCompatActivity
                 ArrayList<String> names = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren())
                 {
-                    String name = ds.child("name").getValue(String.class);
+                    String name = ds.child("firstName").getValue(String.class);
                     names.add(name);
                     Log.d(TAG, "the value is: " + name);
                 }

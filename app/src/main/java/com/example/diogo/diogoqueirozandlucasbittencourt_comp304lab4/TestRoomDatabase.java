@@ -36,7 +36,7 @@ public abstract class TestRoomDatabase
                     INSTANCE = Room.databaseBuilder(
                                 context.getApplicationContext(),
                                 TestRoomDatabase.class,
-                                "test")
+                                "tests")
                             .build();
                 }
             }

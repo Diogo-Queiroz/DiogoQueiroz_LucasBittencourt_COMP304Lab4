@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "180754697639",
+    "firebase_url": "https://medical-room-comp304-lab4.firebaseio.com",
+    "project_id": "medical-room-comp304-lab4",
+    "storage_bucket": "medical-room-comp304-lab4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180754697639:android:55ee3218556a32f26ffa82",
+        "android_client_info": {
+          "package_name": "com.example.diogo.diogofernandesdequeiroz_comp304lab4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180754697639-rp9eqj18ui7brtj1uhk9t6n9j04kt8ph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9u_liEOXwXj-_hKsuGCfAnLFSSaeQVOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180754697639-rp9eqj18ui7brtj1uhk9t6n9j04kt8ph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180754697639:android:d8a87363f1a836486ffa82",
+        "android_client_info": {
+          "package_name": "com.example.diogo.diogoqueirozandlucasbittencourt_comp304lab4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180754697639-rp9eqj18ui7brtj1uhk9t6n9j04kt8ph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9u_liEOXwXj-_hKsuGCfAnLFSSaeQVOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180754697639-rp9eqj18ui7brtj1uhk9t6n9j04kt8ph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

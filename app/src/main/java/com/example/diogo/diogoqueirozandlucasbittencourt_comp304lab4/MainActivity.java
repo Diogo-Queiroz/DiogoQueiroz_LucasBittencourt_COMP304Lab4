@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //writeIntoDatabase();
+        writeIntoDatabase();
 
-        textViewDisplayPatient = findViewById(R.id.textViewDisplayPatient);
-        textViewDisplayNurse = findViewById(R.id.textViewDisplayNurse);
+        textViewDisplayPatient = findViewById(R.id.textViewAllPatients);
+        textViewDisplayNurse = findViewById(R.id.textViewAllNurses);
 
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
         patient = new Patient();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-    public void insertStudent(View view)
+    public void insertPatient(View view)
     {
         editTextPatientId = findViewById(R.id.editTextPatientId);
         patient.setPatientsId(Integer.parseInt(editTextPatientId.getText().toString()));
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("message");
-        DatabaseReference patients = database.getReference().child("patients");
+        DatabaseReference patients = database.getReference("patients");
 
         //ref.setValue("Hello, World");
 
@@ -130,11 +130,11 @@ public class MainActivity extends AppCompatActivity
                     names.add(name);
                     Log.d(TAG, "the value is: " + name);
                 }
-                for (String name : names)
-                {
-                    TextView textView = findViewById(R.id.textViewDisplayPatient);
-                    textView.setText(textView.getText().toString() + name + " , ");
-                }
+//                for (String name : names)
+//                {
+//                    TextView textView = findViewById(R.id.textViewAllPatients);
+//                    textView.setText(textView.getText().toString() + name + " , ");
+//                }
             }
 
             @Override

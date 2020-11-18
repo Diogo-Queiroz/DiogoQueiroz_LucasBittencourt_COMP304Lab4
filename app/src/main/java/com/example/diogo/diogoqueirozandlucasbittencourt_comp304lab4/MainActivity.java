@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        writeIntoDatabase();
+        //writeIntoDatabase();
 
         textViewDisplayPatient = findViewById(R.id.textViewAllPatients);
         textViewDisplayNurse = findViewById(R.id.textViewAllNurses);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         patient.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
 
         patientViewModel.insertPatient(patient);
-        patients.child(String.valueOf(patient.getPatientsId())).setValue(patient);
+        //patients.child(String.valueOf(patient.getPatientsId())).setValue(patient);
 
     }
 

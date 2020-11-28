@@ -35,6 +35,10 @@ public class TestRoomRepository
         mPatientForNurse = mTestDao.getPatientForNurse(nurseId);
         return mPatientForNurse;
     }
+    Nurse getNurseByUsername(String username)
+    {
+        return mTestDao.getNurseByUsername(username);
+    }
 
     void insertPatient(Patient patient)
     {

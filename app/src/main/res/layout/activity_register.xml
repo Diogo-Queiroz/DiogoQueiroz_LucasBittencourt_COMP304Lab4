@@ -20,20 +20,20 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <EditText
-        android:id="@+id/username_input"
+        android:id="@+id/username_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_weight="1"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginTextId"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/loginTextId" />
 
     <EditText
         android:id="@+id/department_input"
@@ -62,7 +62,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_input"
+        app:layout_constraintTop_toBottomOf="@+id/username_login"
         android:autofillHints="" />
 
     <EditText
@@ -81,7 +81,7 @@
         android:autofillHints="" />
 
     <EditText
-        android:id="@+id/password_input"
+        android:id="@+id/password_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -97,27 +97,29 @@
         app:layout_constraintTop_toBottomOf="@+id/department_input" />
 
     <Button
+        android:id="@+id/login_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="insertNurse"
+        android:text="@string/create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_login" />
+
+    <Button
         android:id="@+id/create_account_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/create_account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
-
-    <Button
-        android:id="@+id/back_login_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:onClick="backToMainPage"
         android:text="@string/back_to_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_account_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

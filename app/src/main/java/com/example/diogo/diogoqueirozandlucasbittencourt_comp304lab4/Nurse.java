@@ -13,6 +13,9 @@ public class Nurse
     @ColumnInfo(name = "nurseId")
     private int nurseId;
 
+    @ColumnInfo(name = "nurseUsername")
+    private String username;
+
     @ColumnInfo(name = "firstName")
     private String firstName;
 
@@ -26,10 +29,11 @@ public class Nurse
     private String password;
 
     public Nurse(){}
-    public Nurse(int nurseId, String firstName, String lastName,
+    public Nurse(int nurseId, String username, String firstName, String lastName,
                  String department, String password)
     {
         this.nurseId    = nurseId;
+        this.username   = username;
         this.firstName  = firstName;
         this.lastName   = lastName;
         this.department = department;
@@ -43,6 +47,14 @@ public class Nurse
     public void setNurseId(int nurseId)
     {
         this.nurseId = nurseId;
+    }
+    public String getUsername()
+    {
+        return username;
+    }
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
     public String getFirstName()
     {

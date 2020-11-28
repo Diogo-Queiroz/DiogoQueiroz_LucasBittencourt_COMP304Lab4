@@ -30,6 +30,10 @@ public class PatientViewModel extends AndroidViewModel
         mPatientForNurse = mRepository.getStudentForNurse(nurseId);
         return mPatientForNurse;
     }
+    Nurse getNurseByUsername(String username)
+    {
+        return mRepository.getNurseByUsername(username);
+    }
 
     public void insertPatient(Patient patient) { mRepository.insertPatient(patient); }
     public void insertNurse(Nurse nurse) { mRepository.insertNurse(nurse); }

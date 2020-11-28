@@ -1,5 +1,6 @@
 package com.example.diogo.diogoqueirozandlucasbittencourt_comp304lab4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 {
     private static final String TAG = "Main Activity";
     private PatientViewModel patientViewModel;
-    private Button btnInsertPatient;
+    private Button btnInsertPatient, goToRegister;
     private EditText editTextPatientId, editTextPatientFirstName, editTextPatientLastName,
             editTextPatientDepartment, editTextPatientRoom;
     private EditText editTextNurseId, editTextNurseName;
@@ -43,87 +44,95 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         //writeIntoDatabase();
 
-        textViewDisplayPatient = findViewById(R.id.textViewAllPatients);
+        //textViewDisplayPatient = findViewById(R.id.textViewAllPatients);
         textViewDisplayNurse = findViewById(R.id.textViewAllNurses);
-        btnInsertPatient = findViewById(R.id.btnInsertPatient);
+        goToRegister = findViewById(R.id.goToRegister);
         patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
-        patient = new Patient();
+//        patient = new Patient();
         nurse = new Nurse();
-
-        patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>()
+//
+        patientViewModel.getAllNurses().observe(this, nurses ->
         {
-            @Override
-            public void onChanged(List<Patient> patients)
+            String output = "";
+            for (Nurse nurse : nurses)
             {
-                String output = "";
-                for (Patient patient : patients)
-                {
-                    output += patient.getFirstName() + "\n";
-                }
-                textViewDisplayPatient.setText(output);
+                output += nurse.getFirstName() + "\n";
             }
+            textViewDisplayNurse.setText(output);
         });
 
     }
 
+    public void goToRegister(View view)
+    {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToLogin(View view)
+    {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     public void insertPatient(View view)
     {
-        editTextPatientId = findViewById(R.id.editTextPatientId);
-        editTextPatientFirstName = findViewById(R.id.editTextPatientFirstName);
-        editTextPatientLastName = findViewById(R.id.editTextPatientLastName);
-        editTextPatientDepartment = findViewById(R.id.editTextPatientDepartment);
-        editTextPatientRoom = findViewById(R.id.editTextPatientRoom);
-        editTextNurseId = findViewById(R.id.editTextNurseId);
+//        editTextPatientId = findViewById(R.id.editTextPatientId);
+//        editTextPatientFirstName = findViewById(R.id.editTextPatientFirstName);
+//        editTextPatientLastName = findViewById(R.id.editTextPatientLastName);
+//        editTextPatientDepartment = findViewById(R.id.editTextPatientDepartment);
+//        editTextPatientRoom = findViewById(R.id.editTextPatientRoom);
+//        editTextNurseId = findViewById(R.id.editTextNurseId);
 
-        patient.setPatientsId(Integer.parseInt(editTextPatientId.getText().toString()));
-        patient.setFirstName(editTextPatientFirstName.getText().toString());
-        patient.setLastName(editTextPatientLastName.getText().toString());
-        patient.setDepartment(editTextPatientDepartment.getText().toString());
-        patient.setRoom(editTextPatientRoom.getText().toString());
-        patient.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
-
-        patientViewModel.insertPatient(patient);
+//        patient.setPatientsId(Integer.parseInt(editTextPatientId.getText().toString()));
+//        patient.setFirstName(editTextPatientFirstName.getText().toString());
+//        patient.setLastName(editTextPatientLastName.getText().toString());
+//        patient.setDepartment(editTextPatientDepartment.getText().toString());
+//        patient.setRoom(editTextPatientRoom.getText().toString());
+//        patient.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
+//
+//        patientViewModel.insertPatient(patient);
         //patients.child(String.valueOf(patient.getPatientsId())).setValue(patient);
 
     }
 
     public void insertNurse(View view)
     {
-        editTextNurseId = findViewById(R.id.editTextNurseId);
-        editTextNurseName = findViewById(R.id.editTextNurseName);
+//        editTextNurseId = findViewById(R.id.editTextNurseId);
+//        editTextNurseName = findViewById(R.id.editTextNurseName);
         //nurse.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
 
 
-        nurse.setFirstName(editTextNurseName.getText().toString());
-
-        patientViewModel.insertNurse(nurse);
+//        nurse.setFirstName(editTextNurseName.getText().toString());
+//
+//        patientViewModel.insertNurse(nurse);
     }
 
     public void getList(View view)
     {
-        patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>() {
-            @Override
-            public void onChanged(@Nullable List<Patient> patients) {
-                String  output="";
-
-                for(Patient patient : patients) {
-                    output += patient.getFirstName() +"\n";
-                }
-                textViewDisplayPatient.setText(output);
-            }
-        });
-        //
-        patientViewModel.getAllNurses().observe(this, new Observer<List<Nurse>>() {
-            @Override
-            public void onChanged(@Nullable List<Nurse> nurses) {
-                String  output="";
-
-                for(Nurse nurse : nurses) {
-                    output += nurse.getFirstName() +"\n";
-                }
-                textViewDisplayNurse.setText(output);
-            }
-        });
+//        patientViewModel.getAllPatients().observe(this, new Observer<List<Patient>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Patient> patients) {
+//                String  output="";
+//
+//                for(Patient patient : patients) {
+//                    output += patient.getFirstName() +"\n";
+//                }
+//                textViewDisplayPatient.setText(output);
+//            }
+//        });
+//        //
+//        patientViewModel.getAllNurses().observe(this, new Observer<List<Nurse>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Nurse> nurses) {
+//                String  output="";
+//
+//                for(Nurse nurse : nurses) {
+//                    output += nurse.getFirstName() +"\n";
+//                }
+//                textViewDisplayNurse.setText(output);
+//            }
+//        });
     }
 
     // Firebase write and read from database realtime

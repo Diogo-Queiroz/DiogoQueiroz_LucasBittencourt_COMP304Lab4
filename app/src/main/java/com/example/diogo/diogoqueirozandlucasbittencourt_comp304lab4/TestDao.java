@@ -22,4 +22,7 @@ public interface TestDao
             "nurse.nurseId=tests.nurseId where " +
             "tests.patientsId=:patientsId")
     LiveData<List<Nurse>> getTestPerStudent(int patientsId);
+
+    @Query("select * from nurse where nurseUsername=:username")
+    Nurse getNurseByUsername(String username);
 }

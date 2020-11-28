@@ -64,9 +64,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
     }
+
     public void insertPatient(View view)
     {
         editTextPatientId = findViewById(R.id.editTextPatientId);
@@ -91,9 +90,10 @@ public class MainActivity extends AppCompatActivity
     public void insertNurse(View view)
     {
         editTextNurseId = findViewById(R.id.editTextNurseId);
-        nurse.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
-
         editTextNurseName = findViewById(R.id.editTextNurseName);
+        //nurse.setNurseId(Integer.parseInt(editTextNurseId.getText().toString()));
+
+
         nurse.setFirstName(editTextNurseName.getText().toString());
 
         patientViewModel.insertNurse(nurse);

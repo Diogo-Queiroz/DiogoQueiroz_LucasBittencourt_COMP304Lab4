@@ -38,9 +38,6 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
 
     private Handler handler;
 
-    private EditText inputFirstName, inputLastName, inputDepartment, inputRoom;
-    private Button insertBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -50,18 +47,12 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         nurseId = preferences.getInt("nurseId", 0);
         handler = new Handler();
 
-        inputFirstName = findViewById(R.id.input_patient_first_name);
-        inputLastName = findViewById(R.id.input_patient_last_name);
-        inputDepartment = findViewById(R.id.input_patient_department);
-        inputRoom = findViewById(R.id.input_patient_room);
-
         initList();
         RecyclerView recyclerView = findViewById(R.id.patientRecyclerView);
         recyclerView.setHasFixedSize(true);
         patientListAdapter = new PatientListAdapter(this, patientsList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(patientListAdapter);
-
     }
 
 
@@ -87,18 +78,11 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         Patient patient = patientsList.get(position);
         intent.putExtra("Patient", patient);
         startActivity(intent);
-
-
     }
 
-    public void insertPatient(View view)
+    public void addNewPatient(View view)
     {
-        String fName = inputFirstName.getText().toString();
-        String lName = inputLastName.getText().toString();
-        String dept = inputDepartment.getText().toString();
-        String room = inputRoom.getText().toString();
-        Patient patient = new Patient(fName, lName, dept, room, nurseId);
-
-        hospitalViewModel.insertPatient(patient);
+        Intent intent = new Intent(this, PatientInfoActivity.class);
+        startActivity(intent);
     }
 }

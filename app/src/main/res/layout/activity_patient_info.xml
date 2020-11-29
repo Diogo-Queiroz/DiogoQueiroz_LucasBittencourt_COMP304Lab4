@@ -124,13 +124,13 @@
         app:layout_constraintTop_toBottomOf="@+id/input_patient_department" />
 
     <Button
-        android:id="@+id/update_btn"
+        android:id="@+id/add_or_update_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:onClick="updatePatient"
-        android:text="UPDATE"
+        android:text="ADD or UPDATE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_patient_room" />
 
@@ -157,6 +157,6 @@
         android:text="TESTS"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/back_btn"
-        app:layout_constraintStart_toEndOf="@+id/update_btn"
+        app:layout_constraintStart_toEndOf="@+id/add_or_update_info"
         app:layout_constraintTop_toBottomOf="@+id/input_patient_room" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,13 +10,13 @@ import android.widget.TextView;
 public class HomeActivity extends AppCompatActivity {
 
     TextView nurseGreetingText;
-
+    Nurse nurse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Nurse nurse = (Nurse) getIntent().getSerializableExtra("Nurse");
+        nurse = (Nurse) getIntent().getSerializableExtra("Nurse");
 
         nurseGreetingText = findViewById(R.id.nurseGreetingText);
         nurseGreetingText.setText(getString(R.string.nurseGreeting, nurse.getFirstName()));
@@ -26,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     public void goToPatients(View v)
     {
         Intent intent = new Intent(this, PatientActivity.class);
+        intent.putExtra("Nurse", nurse);
         startActivity(intent);
     }
 

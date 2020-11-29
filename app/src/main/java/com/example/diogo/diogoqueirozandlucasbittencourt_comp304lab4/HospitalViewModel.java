@@ -35,6 +35,13 @@ public class HospitalViewModel extends AndroidViewModel
         return mRepository.getNurseByUsername(username);
     }
 
+    //INSERT METHODS
     public void insertPatient(Patient patient) { mRepository.insertPatient(patient); }
     public void insertNurse(Nurse nurse) { mRepository.insertNurse(nurse); }
+
+    //UPDATE METHODS
+    public void updatePatient(Patient patient)
+    {
+        mRepository.updatePatient(patient);
+    }
 }

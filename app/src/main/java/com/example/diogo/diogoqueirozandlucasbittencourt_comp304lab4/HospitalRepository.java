@@ -46,6 +46,7 @@ public class HospitalRepository
         return mTestDao.getNurseByUsername(username);
     }
 
+    //INSERT METHODS
     void insertPatient(Patient patient)
     {
         HospitalDatabase.databaseWriteExecutor.execute(() ->
@@ -61,4 +62,14 @@ public class HospitalRepository
             mNurseDao.insert(nurse);
         });
     }
+
+    //UPDATE METHODS
+    void updatePatient(Patient patient)
+    {
+        HospitalDatabase.databaseWriteExecutor.execute(() ->
+        {
+            mPatientsDao.update(patient);
+        });
+    }
+
 }

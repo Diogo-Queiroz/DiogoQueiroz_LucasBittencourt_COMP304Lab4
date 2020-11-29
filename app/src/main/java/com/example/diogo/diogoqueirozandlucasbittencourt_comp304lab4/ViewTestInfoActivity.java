@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -52,7 +53,7 @@ public class ViewTestInfoActivity extends AppCompatActivity
         textViewTitlePatientName.setText(String.format("Test info for %s", patientName));
         textViewNurseName.setText(nurseName);
 
-        if (patient == null)
+        if (test == null)
         {
             addOrUpdateBtn.setText("INSERT");
             addOrUpdateBtn.setOnClickListener(this::insertTest);
@@ -85,14 +86,13 @@ public class ViewTestInfoActivity extends AppCompatActivity
     public void insertTest(View view)
     {
         Test newTest = new Test();
-
         newTest.setTemperature(textViewTemperature.getText().toString());
         newTest.setBPH(textViewBPH.getText().toString());
         newTest.setBPL(textViewBPL.getText().toString());
         newTest.setPatientsId(patientId);
         newTest.setNurseId(nurseId);
 
-        hospitalViewModel.insertTest(test);
+        hospitalViewModel.insertTest(newTest);
         finish();
     }
 }

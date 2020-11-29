@@ -63,6 +63,14 @@ public class TestActivity extends AppCompatActivity implements TestListAdapter.O
     }
 
     @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        initList();
+    }
+
+
+    @Override
     public void onCardClick(int position) {
         Log.d("LOGGER", "clicked at position: " + position);
 

@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity
 //
         hospitalViewModel.getAllNurses().observe(this, nurses ->
         {
-            String output = "";
+            String output = "Nurses:\n";
             for (Nurse nurse : nurses)
             {
-                output += nurse.getFirstName() + "\n";
+                output += "username: " + nurse.getUsername() + " | password: " + nurse.getPassword() + "\n";
             }
             textViewDisplayNurse.setText(output);
         });

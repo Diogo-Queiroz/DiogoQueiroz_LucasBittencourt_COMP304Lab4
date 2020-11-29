@@ -37,13 +37,13 @@ public class PatientInfoActivity extends AppCompatActivity
         nurseId = preferences.getInt("nurseId", 0);
         patientId = preferences.getInt("patientId", 0);
 
-        addOrUpdateBtn = findViewById(R.id.add_or_update_test);
+        addOrUpdateBtn = findViewById(R.id.add_or_update_patient);
         testBtn = findViewById(R.id.test_btn);
 
-        firstName = findViewById(R.id.input_nurse_name);
-        lastName = findViewById(R.id.input_test_temp);
-        department = findViewById(R.id.input_test_BPH);
-        room = findViewById(R.id.input_test_BPL);
+        firstName = findViewById(R.id.input_patient_first_name);
+        lastName = findViewById(R.id.input_patient_last_name);
+        department = findViewById(R.id.input_patient_department);
+        room = findViewById(R.id.input_patient_room);
 
         patient = (Patient) getIntent().getSerializableExtra("Patient");
         if (patient == null)

@@ -10,12 +10,12 @@
         android:id="@+id/insert_test_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="36dp"
         android:text="Test Info for PatientName"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,6 +63,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/test_BPH" />
 
+    <TextView
+        android:id="@+id/test_Cholesterol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Cholesterol"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/test_BPL" />
+
     <EditText
         android:id="@+id/input_nurse_name"
         android:layout_width="0dp"
@@ -88,7 +99,8 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Temperature"
-        android:inputType="textPersonName"
+        android:inputType="number"
+        android:maxLength="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/test_temp"
@@ -103,7 +115,8 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="BPH"
-        android:inputType="textPersonName"
+        android:inputType="number"
+        android:maxLength="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/test_temp"
@@ -118,34 +131,51 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="BPL"
-        android:inputType="textPersonName"
+        android:inputType="number"
+        android:maxLength="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/test_temp"
         app:layout_constraintTop_toBottomOf="@+id/input_test_BPH" />
+
+    <EditText
+        android:id="@+id/input_test_Cholesterol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Cholesterol"
+        android:inputType="number"
+        android:maxLength="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/test_temp"
+        app:layout_constraintTop_toBottomOf="@+id/input_test_BPL" />
 
     <Button
         android:id="@+id/add_or_update_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:onClick="insertTest"
         android:text="ADD or UPDATE"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_BPL" />
+        app:layout_constraintTop_toBottomOf="@+id/input_test_Cholesterol" />
 
     <Button
         android:id="@+id/back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#DDDDDD"
         android:onClick="backToPatient"
         android:text="BACK"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_BPL" />
+        app:layout_constraintTop_toBottomOf="@+id/input_test_Cholesterol" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

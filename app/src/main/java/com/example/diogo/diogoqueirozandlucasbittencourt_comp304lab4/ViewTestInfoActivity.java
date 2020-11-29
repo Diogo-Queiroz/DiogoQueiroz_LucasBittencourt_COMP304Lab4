@@ -23,7 +23,7 @@ public class ViewTestInfoActivity extends AppCompatActivity
     Test test;
     private HospitalViewModel hospitalViewModel;
 
-    TextView textViewTitlePatientName, textViewNurseName, textViewBPL, textViewBPH, textViewTemperature;
+    TextView textViewTitlePatientName, textViewNurseName, textViewBPL, textViewBPH, textViewTemperature, textViewCholesterol;
     Button addOrUpdateBtn;
 
     @Override
@@ -48,6 +48,7 @@ public class ViewTestInfoActivity extends AppCompatActivity
         textViewBPH = findViewById(R.id.input_test_BPH);
         textViewBPL = findViewById(R.id.input_test_BPL);
         textViewTemperature = findViewById(R.id.input_test_temp);
+        textViewCholesterol = findViewById(R.id.input_test_Cholesterol);
         addOrUpdateBtn = findViewById(R.id.add_or_update_test);
 
         textViewTitlePatientName.setText(String.format("Test info for %s", patientName));
@@ -65,6 +66,7 @@ public class ViewTestInfoActivity extends AppCompatActivity
             textViewTemperature.setText(test.getTemperature());
             textViewBPH.setText(test.getBPH());
             textViewBPL.setText(test.getBPL());
+            textViewCholesterol.setText(test.getCholesterol());
         }
     }
 
@@ -78,7 +80,7 @@ public class ViewTestInfoActivity extends AppCompatActivity
         test.setTemperature(textViewTemperature.getText().toString());
         test.setBPH(textViewBPH.getText().toString());
         test.setBPL(textViewBPL.getText().toString());
-
+        test.setCholesterol(textViewCholesterol.getText().toString());
         hospitalViewModel.updateTest(test);
         finish();
     }
@@ -89,6 +91,7 @@ public class ViewTestInfoActivity extends AppCompatActivity
         newTest.setTemperature(textViewTemperature.getText().toString());
         newTest.setBPH(textViewBPH.getText().toString());
         newTest.setBPL(textViewBPL.getText().toString());
+        newTest.setCholesterol(textViewCholesterol.getText().toString());
         newTest.setPatientsId(patientId);
         newTest.setNurseId(nurseId);
 

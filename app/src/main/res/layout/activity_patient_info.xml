@@ -7,7 +7,7 @@
     tools:context=".PatientInfoActivity">
 
     <TextView
-        android:id="@+id/insert_test_title"
+        android:id="@+id/insert_patient_info_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nurse_name"
+        android:id="@+id/patient_first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,10 +28,10 @@
         android:text="First Name"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/insert_test_title" />
+        app:layout_constraintTop_toBottomOf="@+id/insert_patient_info_title" />
 
     <TextView
-        android:id="@+id/test_temp"
+        android:id="@+id/patient_last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,10 +39,10 @@
         android:text="Last Name"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nurse_name" />
+        app:layout_constraintTop_toBottomOf="@+id/patient_first_name" />
 
     <TextView
-        android:id="@+id/test_BPH"
+        android:id="@+id/patient_department"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -50,10 +50,10 @@
         android:text="Department"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test_temp" />
+        app:layout_constraintTop_toBottomOf="@+id/patient_last_name" />
 
     <TextView
-        android:id="@+id/test_BPL"
+        android:id="@+id/patient_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -61,10 +61,10 @@
         android:text="Room"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test_BPH" />
+        app:layout_constraintTop_toBottomOf="@+id/patient_department" />
 
     <EditText
-        android:id="@+id/input_nurse_name"
+        android:id="@+id/input_patient_first_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -75,11 +75,11 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toEndOf="@+id/test_BPH"
-        app:layout_constraintTop_toBottomOf="@+id/insert_test_title" />
+        app:layout_constraintStart_toEndOf="@+id/patient_department"
+        app:layout_constraintTop_toBottomOf="@+id/insert_patient_info_title" />
 
     <EditText
-        android:id="@+id/input_test_temp"
+        android:id="@+id/input_patient_last_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -90,11 +90,11 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/test_BPH"
-        app:layout_constraintTop_toBottomOf="@+id/input_nurse_name" />
+        app:layout_constraintStart_toEndOf="@+id/patient_department"
+        app:layout_constraintTop_toBottomOf="@+id/input_patient_first_name" />
 
     <EditText
-        android:id="@+id/input_test_BPH"
+        android:id="@+id/input_patient_department"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -105,11 +105,11 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/test_BPH"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_temp" />
+        app:layout_constraintStart_toEndOf="@+id/patient_department"
+        app:layout_constraintTop_toBottomOf="@+id/input_patient_last_name" />
 
     <EditText
-        android:id="@+id/input_test_BPL"
+        android:id="@+id/input_patient_room"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -120,11 +120,11 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/test_BPH"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_BPH" />
+        app:layout_constraintStart_toEndOf="@+id/patient_department"
+        app:layout_constraintTop_toBottomOf="@+id/input_patient_department" />
 
     <Button
-        android:id="@+id/add_or_update_test"
+        android:id="@+id/add_or_update_patient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -132,7 +132,7 @@
         android:onClick="updatePatient"
         android:text="ADD or UPDATE"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_BPL" />
+        app:layout_constraintTop_toBottomOf="@+id/input_patient_room" />
 
     <Button
         android:id="@+id/back_btn"
@@ -145,7 +145,7 @@
         android:text="BACK"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_BPL" />
+        app:layout_constraintTop_toBottomOf="@+id/input_patient_room" />
 
     <Button
         android:id="@+id/test_btn"
@@ -157,6 +157,6 @@
         android:text="TESTS"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/back_btn"
-        app:layout_constraintStart_toEndOf="@+id/add_or_update_test"
-        app:layout_constraintTop_toBottomOf="@+id/input_test_BPL" />
+        app:layout_constraintStart_toEndOf="@+id/add_or_update_patient"
+        app:layout_constraintTop_toBottomOf="@+id/input_patient_room" />
 </androidx.constraintlayout.widget.ConstraintLayout>

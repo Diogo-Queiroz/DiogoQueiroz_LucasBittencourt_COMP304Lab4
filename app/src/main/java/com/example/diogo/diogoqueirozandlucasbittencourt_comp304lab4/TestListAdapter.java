@@ -21,6 +21,7 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.MyView
         public TextView BPH;
         public TextView BPL;
         public TextView temperature;
+        public TextView cholesterol;
         OnCardListener onCardListener;
 
         public MyViewHolder(View itemView, OnCardListener onCardListener)
@@ -29,6 +30,7 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.MyView
             temperature = itemView.findViewById(R.id.textView_temperature_list);
             BPH = itemView.findViewById(R.id.textView_BPH_list);
             BPL = itemView.findViewById(R.id.textView_BPL_list);
+            cholesterol = itemView.findViewById(R.id.textView_cholesterol_list);
             this.onCardListener = onCardListener;
             itemView.setOnClickListener(this);
         }
@@ -67,9 +69,10 @@ public class TestListAdapter extends RecyclerView.Adapter<TestListAdapter.MyView
     {
 
         // replace the contents of the layout_listitem view with elements from data set
-        holder.temperature.setText(testList.get(position).getTemperature());
-        holder.BPH.setText(testList.get(position).getBPH());
+        holder.temperature.setText(String.format("%s Celsius", testList.get(position).getTemperature()));
+        holder.BPH.setText(String.format("%s ng/ml", testList.get(position).getBPH()));
         holder.BPL.setText(testList.get(position).getBPL());
+        holder.cholesterol.setText(String.format("%s mg/dl", testList.get(position).getCholesterol()));
 
     }
 

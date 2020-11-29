@@ -16,7 +16,7 @@ public class PatientInfoActivity extends AppCompatActivity
 {
 
     EditText firstName, lastName, department, room;
-    Button addOrUpdateBtn, backBtn;
+    Button addOrUpdateBtn, testBtn;
     SharedPreferences preferences;
     int nurseId;
     private HospitalViewModel hospitalViewModel;
@@ -36,6 +36,7 @@ public class PatientInfoActivity extends AppCompatActivity
         nurseId = preferences.getInt("nurseId", 0);
 
         addOrUpdateBtn = findViewById(R.id.add_or_update_info);
+        testBtn = findViewById(R.id.test_btn);
 
         firstName = findViewById(R.id.input_patient_first_name);
         lastName = findViewById(R.id.input_patient_last_name);
@@ -47,12 +48,13 @@ public class PatientInfoActivity extends AppCompatActivity
         {
             addOrUpdateBtn.setText("INSERT");
             addOrUpdateBtn.setOnClickListener(this::insertPatient);
+            testBtn.setVisibility(View.GONE);
         }
         else
         {
             addOrUpdateBtn.setText("UPDATE");
             addOrUpdateBtn.setOnClickListener(this::updatePatient);
-
+            testBtn.setVisibility(View.VISIBLE);
             firstName.setText(patient.getFirstName());
             lastName.setText(patient.getLastName());
             department.setText(patient.getDepartment());

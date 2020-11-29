@@ -14,6 +14,8 @@ public class HospitalRepository
 
     private LiveData<List<Patient>> mAllPatients;
     private LiveData<List<Nurse>> mAllNurses;
+    private LiveData<List<Test>> mAllTestsByPatientByNurse;
+    private LiveData<List<Test>> mAllTests;
     private LiveData<List<Patient>> mPatientForNurse;
 
     HospitalRepository(Application application)
@@ -28,19 +30,23 @@ public class HospitalRepository
         mAllNurses = mNurseDao.getAllNurses();
     }
 
+    //GET ALL PATIENTS
     LiveData<List<Patient>> getAllPatients() {return mAllPatients;}
     LiveData<List<Nurse>> getAllNurses() {return mAllNurses;}
+    LiveData<List<Test>> getAllTests() {return mAllTests;}
 
+    //GET ALL BY FILTER (NurseID)
     LiveData<List<Patient>> getPatientsForNurse(int nurseId)
     {
         return mPatientsDao.getPatientsByNurseId(nurseId);
     }
-
-    LiveData<List<Patient>> getTestForPatientsForNurse(int nurseId)
+    LiveData<List<Test>> getTestByPatientByNurse(int nurseId, int patientId)
     {
-        mPatientForNurse = mTestDao.getTestForPatientForNurse(nurseId);
-        return mPatientForNurse;
+        mAllTestsByPatientByNurse = mTestDao.getTestsByPatientByNurse(nurseId, patientId);
+        return mAllTestsByPatientByNurse;
     }
+
+    //GET ONE BY FILTER
     Nurse getNurseByUsername(String username)
     {
         return mTestDao.getNurseByUsername(username);
@@ -63,6 +69,14 @@ public class HospitalRepository
         });
     }
 
+    public void insertTest(Test test)
+    {
+        HospitalDatabase.databaseWriteExecutor.execute(() ->
+        {
+            mTestDao.insert(test);
+        });
+    }
+
     //UPDATE METHODS
     void updatePatient(Patient patient)
     {
@@ -71,5 +85,14 @@ public class HospitalRepository
             mPatientsDao.update(patient);
         });
     }
+
+    void updateTest(Test test)
+    {
+        HospitalDatabase.databaseWriteExecutor.execute(() ->
+        {
+            mTestDao.update(test);
+        });
+    }
+
 
 }

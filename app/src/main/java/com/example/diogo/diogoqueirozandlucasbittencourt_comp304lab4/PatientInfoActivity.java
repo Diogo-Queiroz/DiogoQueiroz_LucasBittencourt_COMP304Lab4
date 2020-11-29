@@ -19,6 +19,7 @@ public class PatientInfoActivity extends AppCompatActivity
     Button addOrUpdateBtn, testBtn;
     SharedPreferences preferences;
     int nurseId;
+    int patientId;
     private HospitalViewModel hospitalViewModel;
     Nurse nurse;
     Patient patient;
@@ -29,19 +30,20 @@ public class PatientInfoActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_info);
-        nurse = (Nurse) getIntent().getSerializableExtra("Nurse");
+        //nurse = (Nurse) getIntent().getSerializableExtra("Nurse");
         hospitalViewModel = new ViewModelProvider(this).get(HospitalViewModel.class);
 
         preferences = getSharedPreferences("nurseId", Context.MODE_PRIVATE);
         nurseId = preferences.getInt("nurseId", 0);
+        patientId = preferences.getInt("patientId", 0);
 
-        addOrUpdateBtn = findViewById(R.id.add_or_update_info);
+        addOrUpdateBtn = findViewById(R.id.add_or_update_test);
         testBtn = findViewById(R.id.test_btn);
 
-        firstName = findViewById(R.id.input_patient_first_name);
-        lastName = findViewById(R.id.input_patient_last_name);
-        department = findViewById(R.id.input_patient_department);
-        room = findViewById(R.id.input_patient_room);
+        firstName = findViewById(R.id.input_nurse_name);
+        lastName = findViewById(R.id.input_test_temp);
+        department = findViewById(R.id.input_test_BPH);
+        room = findViewById(R.id.input_test_BPL);
 
         patient = (Patient) getIntent().getSerializableExtra("Patient");
         if (patient == null)
@@ -92,5 +94,13 @@ public class PatientInfoActivity extends AppCompatActivity
         hospitalViewModel.updatePatient(patient);
         Log.d("TAG", "Update???????????");
         finish();
+    }
+
+    public void patientTest(View view)
+    {
+        Intent intent = new Intent(this, TestActivity.class);
+        //intent.putExtra("Nurse", nurse);
+        intent.putExtra("Patient", patient);
+        startActivity(intent);
     }
 }

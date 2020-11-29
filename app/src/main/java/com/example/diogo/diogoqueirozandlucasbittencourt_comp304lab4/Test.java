@@ -6,14 +6,17 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "tests",
         foreignKeys = {
             @ForeignKey(entity =  Patient.class, parentColumns = "patientsId", childColumns = "patientsId"),
             @ForeignKey(entity =  Nurse.class, parentColumns = "nurseId", childColumns = "nurseId")
         })
-public class Test
+public class Test implements Serializable
 {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name =  "testId")
     private int testId;
 
     @NonNull
@@ -34,12 +37,12 @@ public class Test
     @ColumnInfo(name =  "cholesterol")
     private String cholesterol;
 
-    public Test(int patientsId, int nurseId, int testId,
+    public Test(){}
+    public Test(int patientsId, int nurseId,
                 String BPL, String BPH, String temperature, String cholesterol)
     {
         this.patientsId = patientsId;
         this.nurseId = nurseId;
-        this.testId = testId;
         this.BPH = BPH;
         this.BPL = BPL;
         this.temperature = temperature;
@@ -57,10 +60,6 @@ public class Test
     public int getTestId()
     {
         return testId;
-    }
-    public void setTestId(int testId)
-    {
-        this.testId = testId;
     }
     public String getBPL()
     {
@@ -93,5 +92,17 @@ public class Test
     public void setCholesterol(String cholesterol)
     {
         this.cholesterol = cholesterol;
+    }
+    public void setPatientsId(int patientsId)
+    {
+        this.patientsId = patientsId;
+    }
+    public void setNurseId(int nurseId)
+    {
+        this.nurseId = nurseId;
+    }
+    public void setTestId(int testId)
+    {
+        this.testId = testId;
     }
 }

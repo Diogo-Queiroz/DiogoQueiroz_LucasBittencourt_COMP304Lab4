@@ -75,7 +75,8 @@ public class LoginActivity extends AppCompatActivity
 
                             SharedPreferences.Editor prefEditor = preferences.edit();
                             prefEditor.putInt("nurseId", nurse.getNurseId());
-                            prefEditor.commit();
+                            prefEditor.putString("nurseName", nurse.getFirstName());
+                            prefEditor.apply();
 
                             Intent intent = new Intent(this, HomeActivity.class);
                             intent.putExtra("Nurse", nurse);

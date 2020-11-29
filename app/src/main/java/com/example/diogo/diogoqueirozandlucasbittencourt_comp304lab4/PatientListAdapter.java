@@ -25,9 +25,9 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         public MyViewHolder (View itemView, OnCardListener onCardListener){
             super(itemView);
-            name = itemView.findViewById(R.id.patientName);
-            department = itemView.findViewById(R.id.departmentText);
-            room = itemView.findViewById(R.id.roomText);
+            name = itemView.findViewById(R.id.textView_temperature_list);
+            department = itemView.findViewById(R.id.textView_BPH_list);
+            room = itemView.findViewById(R.id.textView_BPL_list);
             this.onCardListener = onCardListener;
             itemView.setOnClickListener(this);
         }

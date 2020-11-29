@@ -86,6 +86,10 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         Intent intent = new Intent(this, PatientInfoActivity.class);
         Patient patient = patientsList.get(position);
         intent.putExtra("Patient", patient);
+        SharedPreferences.Editor prefEditor = preferences.edit();
+        prefEditor.putInt("patientId", patient.getPatientsId());
+        prefEditor.putString("patientName", patient.getFirstName());
+        prefEditor.apply();
         startActivity(intent);
     }
 

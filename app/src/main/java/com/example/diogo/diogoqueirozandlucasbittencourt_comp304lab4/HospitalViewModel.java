@@ -14,6 +14,7 @@ public class HospitalViewModel extends AndroidViewModel
     private LiveData<List<Patient>> mAllPatients;
     private LiveData<List<Nurse>> mAllNurses;
     private LiveData<List<Patient>> mPatientForNurse;
+    private LiveData<List<Test>> mTestByPatientByNurse;
 
     public HospitalViewModel(Application application)
     {
@@ -38,10 +39,23 @@ public class HospitalViewModel extends AndroidViewModel
     //INSERT METHODS
     public void insertPatient(Patient patient) { mRepository.insertPatient(patient); }
     public void insertNurse(Nurse nurse) { mRepository.insertNurse(nurse); }
+    public void insertTest(Test test)
+    {
+        mRepository.insertTest(test);
+    }
 
     //UPDATE METHODS
     public void updatePatient(Patient patient)
     {
         mRepository.updatePatient(patient);
     }
+    public void updateTest(Test test) {mRepository.updateTest(test);}
+
+    public LiveData<List<Test>> getTestsByPatientByNurse(int nurseId, int patientId)
+    {
+        mTestByPatientByNurse = mRepository.getTestByPatientByNurse(nurseId, patientId);
+        return mTestByPatientByNurse;
+    }
+
+
 }

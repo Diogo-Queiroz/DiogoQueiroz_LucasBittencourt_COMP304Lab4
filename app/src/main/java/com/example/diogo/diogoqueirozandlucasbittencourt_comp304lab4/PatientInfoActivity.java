@@ -21,6 +21,7 @@ public class PatientInfoActivity extends AppCompatActivity
     int nurseId;
     private HospitalViewModel hospitalViewModel;
     Nurse nurse;
+    Patient patient;
 
 
     @Override
@@ -41,7 +42,7 @@ public class PatientInfoActivity extends AppCompatActivity
         department = findViewById(R.id.input_patient_department);
         room = findViewById(R.id.input_patient_room);
 
-        Patient patient = (Patient) getIntent().getSerializableExtra("Patient");
+        patient = (Patient) getIntent().getSerializableExtra("Patient");
         if (patient == null)
         {
             addOrUpdateBtn.setText("INSERT");
@@ -62,22 +63,7 @@ public class PatientInfoActivity extends AppCompatActivity
 
     public void back(View view)
     {
-        Intent intent = new Intent(this, MainActivity.class);
-        //intent.putExtra("Nurse", nurse);
-        startActivity(intent);
-    }
-
-    public void updatePatient(View view)
-    {
-        String fName = firstName.getText().toString();
-        String lName = lastName.getText().toString();
-        String dept = department.getText().toString();
-        String roomStr = room.getText().toString();
-        Patient patient = new Patient(fName, lName, dept, roomStr, nurseId);
-
-        hospitalViewModel.updatePatient(patient);
-        Log.d("TAG", "Updated???????????");
-        back(view);
+        finish();
     }
 
     public void insertPatient(View view)
@@ -89,7 +75,20 @@ public class PatientInfoActivity extends AppCompatActivity
         Patient patient = new Patient(fName, lName, dept, roomStr, nurseId);
 
         hospitalViewModel.insertPatient(patient);
-        Log.d("TAG", "Inserted???????????");
-        back(view);
+        Log.d("TAG", "insert???????????");
+        finish();
+    }
+
+    public void updatePatient(View view)
+    {
+        patient.setFirstName(firstName.getText().toString());
+        patient.setLastName(lastName.getText().toString());
+        patient.setDepartment(department.getText().toString());
+        patient.setRoom(room.getText().toString());
+        patient.setNurseId(nurseId);
+
+        hospitalViewModel.updatePatient(patient);
+        Log.d("TAG", "Update???????????");
+        finish();
     }
 }

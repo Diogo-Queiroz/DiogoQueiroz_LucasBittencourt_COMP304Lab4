@@ -55,6 +55,14 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         recyclerView.setAdapter(patientListAdapter);
     }
 
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        //patientsList.clear();
+//        patientListAdapter.notifyDataSetChanged();
+        initList();
+    }
 
     private void initList()
     {
@@ -63,6 +71,7 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         hospitalViewModel.getAllPatientsForNurse(nurseId).observe(this, new Observer<List<Patient>>() {
             @Override
             public void onChanged(List<Patient> patients) {
+                patientsList.clear();
                 patientsList.addAll(patients);
                 patientListAdapter.notifyDataSetChanged();
             }

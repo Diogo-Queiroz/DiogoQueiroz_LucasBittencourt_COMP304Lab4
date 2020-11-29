@@ -15,6 +15,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +38,9 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
 
     private Handler handler;
 
+    private EditText inputFirstName, inputLastName, inputDepartment, inputRoom;
+    private Button insertBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -43,6 +49,11 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         preferences = getSharedPreferences("nurseId", Context.MODE_PRIVATE);
         nurseId = preferences.getInt("nurseId", 0);
         handler = new Handler();
+
+        inputFirstName = findViewById(R.id.input_patient_first_name);
+        inputLastName = findViewById(R.id.input_patient_last_name);
+        inputDepartment = findViewById(R.id.input_patient_department);
+        inputRoom = findViewById(R.id.input_patient_room);
 
         initList();
         RecyclerView recyclerView = findViewById(R.id.patientRecyclerView);
@@ -78,5 +89,16 @@ public class PatientActivity extends AppCompatActivity implements PatientListAda
         startActivity(intent);
 
 
+    }
+
+    public void insertPatient(View view)
+    {
+        String fName = inputFirstName.getText().toString();
+        String lName = inputLastName.getText().toString();
+        String dept = inputDepartment.getText().toString();
+        String room = inputRoom.getText().toString();
+        Patient patient = new Patient(fName, lName, dept, room, nurseId);
+
+        hospitalViewModel.insertPatient(patient);
     }
 }

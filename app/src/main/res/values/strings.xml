@@ -29,4 +29,5 @@
     <string name="back_to_login">Back to Login</string>
     <string name="register_account">Register Account</string>
     <string name="login_account">Login Account</string>
+    <string name="nurseGreeting">Hi %1$s</string>
 </resources>

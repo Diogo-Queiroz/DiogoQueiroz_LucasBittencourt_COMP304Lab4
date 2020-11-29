@@ -7,18 +7,18 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class PatientViewModel extends AndroidViewModel
+public class HospitalViewModel extends AndroidViewModel
 {
-    private TestRoomRepository mRepository;
+    private HospitalRepository mRepository;
 
     private LiveData<List<Patient>> mAllPatients;
     private LiveData<List<Nurse>> mAllNurses;
     private LiveData<List<Patient>> mPatientForNurse;
 
-    public PatientViewModel(Application application)
+    public HospitalViewModel(Application application)
     {
         super(application);
-        mRepository = new TestRoomRepository(application);
+        mRepository = new HospitalRepository(application);
         mAllPatients = mRepository.getAllPatients();
         mAllNurses = mRepository.getAllNurses();
     }
@@ -27,7 +27,7 @@ public class PatientViewModel extends AndroidViewModel
     LiveData<List<Nurse>> getAllNurses() {return mAllNurses;}
     LiveData<List<Patient>> getAllPatientsForNurse(int nurseId)
     {
-        mPatientForNurse = mRepository.getStudentForNurse(nurseId);
+        mPatientForNurse = mRepository.getPatientsForNurse(nurseId);
         return mPatientForNurse;
     }
     Nurse getNurseByUsername(String username)

@@ -16,7 +16,7 @@ public interface TestDao
     @Query("select * from patient inner join tests on " +
             "patient.patientsId=tests.patientsId where " +
             "tests.nurseId=:nurseId")
-    LiveData<List<Patient>> getPatientForNurse(int nurseId);
+    LiveData<List<Patient>> getTestForPatientForNurse(int nurseId);
 
     @Query("select * from nurse inner join tests on " +
             "nurse.nurseId=tests.nurseId where " +

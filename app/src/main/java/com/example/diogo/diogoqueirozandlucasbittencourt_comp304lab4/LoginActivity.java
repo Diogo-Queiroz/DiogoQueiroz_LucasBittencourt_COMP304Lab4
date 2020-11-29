@@ -1,15 +1,21 @@
 package com.example.diogo.diogoqueirozandlucasbittencourt_comp304lab4;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,12 +23,12 @@ public class LoginActivity extends AppCompatActivity
 {
     private static final String TAG = "Login Activity";
     private Nurse nurse;
-    private PatientViewModel patientViewModel;
+    private HospitalViewModel hospitalViewModel;
     private List<Nurse> nurses;
     private EditText inputUsername, inputPassword;
-    private TextView textViewError;
     private Button loginBtn;
     private SharedPreferences preferences;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,12 +36,15 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
-        nurse = new Nurse();
+        hospitalViewModel = new ViewModelProvider(this).get(HospitalViewModel.class);
 
+        handler = new Handler();
         inputUsername = findViewById(R.id.username_login);
         inputPassword = findViewById(R.id.password_login);
         loginBtn = findViewById(R.id.login_btn);
+
+        preferences = getSharedPreferences("nurseId", MODE_PRIVATE);
+
     }
 
     public void login(View view)
@@ -43,31 +52,84 @@ public class LoginActivity extends AppCompatActivity
         String username = inputUsername.getText().toString();
         String password = inputPassword.getText().toString();
 
-        try
+        if (username.isEmpty())
         {
-            patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
-            Thread thread = new Thread(() ->
+            inputUsername.setError("Please Enter your name");
+        }
+        else if (password.isEmpty())
+        {
+            inputPassword.setError("Please Enter your password");
+        }
+        else
+        {
+            try
             {
-                nurse = patientViewModel.getNurseByUsername(username);
-                String name = "";
-                name = nurse.getFirstName();
-                if (nurse.getUsername().equals(username))
+                AsyncTask.execute(() ->
                 {
-                    Log.d(TAG, "the username is equal: " + nurse.getUsername());
-                }
-                if (nurse.getPassword().equals(password))
-                {
-                    Log.d(TAG, "the password is equal: " + nurse.getUsername());
-                }
-            });
-        }
-        catch (Error error)
-        {
-            textViewError.setText("Invalid Operation");
-            Log.d(TAG, "Error -> " + error.getMessage());
-        }
+                    nurse = hospitalViewModel.getNurseByUsername(username);
 
+                    if (nurse != null)
+                    {
+                        if (nurse.getPassword().equals(password))
+                        {
+
+                            SharedPreferences.Editor prefEditor = preferences.edit();
+                            prefEditor.putInt("nurseId", nurse.getNurseId());
+                            prefEditor.commit();
+
+                            Intent intent = new Intent(this, HomeActivity.class);
+                            intent.putExtra("Nurse", nurse);
+                            startActivity(intent);
+
+                        }
+                        else
+                        {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    inputPassword.setError("Incorrect Password");
+
+                                }
+                            });
+
+                        }
+                    } else
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                inputUsername.setError("Invalid user name");
+
+                            }
+                        });
+                    }
+
+                });
+            }
+            catch (Error error)
+            {
+                Log.d(TAG, "Error -> " + error.getMessage());
+            }
+        }
     }
+
+//    public void showIncorrectPasswordDialog()
+//    {
+//        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+//        builder1.setMessage("Incorrect Password. Please try again");
+//        builder1.setCancelable(true);
+//
+//        builder1.setPositiveButton(
+//                "Ok",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//
+//        AlertDialog alert11 = builder1.create();
+//        alert11.show();
+//    }
 
     public void createAccountPage(View view)
     {

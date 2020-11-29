@@ -30,7 +30,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="numberSigned"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTextId" />

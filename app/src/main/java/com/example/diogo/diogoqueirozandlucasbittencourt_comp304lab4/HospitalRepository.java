@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class TestRoomRepository
+public class HospitalRepository
 {
     private PatientsDao mPatientsDao;
     private NurseDao mNurseDao;
@@ -16,9 +16,9 @@ public class TestRoomRepository
     private LiveData<List<Nurse>> mAllNurses;
     private LiveData<List<Patient>> mPatientForNurse;
 
-    TestRoomRepository(Application application)
+    HospitalRepository(Application application)
     {
-        TestRoomDatabase db = TestRoomDatabase.getDatabase(application);
+        HospitalDatabase db = HospitalDatabase.getDatabase(application);
 
         mPatientsDao = db.patientsDao();
         mNurseDao = db.nurseDao();
@@ -30,9 +30,15 @@ public class TestRoomRepository
 
     LiveData<List<Patient>> getAllPatients() {return mAllPatients;}
     LiveData<List<Nurse>> getAllNurses() {return mAllNurses;}
-    LiveData<List<Patient>> getStudentForNurse(int nurseId)
+
+    LiveData<List<Patient>> getPatientsForNurse(int nurseId)
     {
-        mPatientForNurse = mTestDao.getPatientForNurse(nurseId);
+        return mPatientsDao.getPatientsByNurseId(nurseId);
+    }
+
+    LiveData<List<Patient>> getTestForPatientsForNurse(int nurseId)
+    {
+        mPatientForNurse = mTestDao.getTestForPatientForNurse(nurseId);
         return mPatientForNurse;
     }
     Nurse getNurseByUsername(String username)
@@ -42,7 +48,7 @@ public class TestRoomRepository
 
     void insertPatient(Patient patient)
     {
-        TestRoomDatabase.databaseWriteExecutor.execute(() ->
+        HospitalDatabase.databaseWriteExecutor.execute(() ->
         {
             mPatientsDao.insert(patient);
         });
@@ -50,10 +56,9 @@ public class TestRoomRepository
 
     void insertNurse(Nurse nurse)
     {
-        TestRoomDatabase.databaseWriteExecutor.execute(() ->
+        HospitalDatabase.databaseWriteExecutor.execute(() ->
         {
             mNurseDao.insert(nurse);
         });
     }
-
 }

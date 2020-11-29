@@ -13,7 +13,7 @@ import android.widget.EditText;
 public class RegisterActivity extends AppCompatActivity
 {
     private static final String TAG = "Register Activity";
-    private PatientViewModel patientViewModel;
+    private HospitalViewModel hospitalViewModel;
     private Button createAccount, backToLoginPage;
     private EditText editTextNurseUsername, editTextNurseName, editTextNurseLastName,
                      editTextNurseDepartment, editTextNursePassword;
@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_register);
 
         createAccount = findViewById(R.id.login_btn);
-        patientViewModel = new ViewModelProvider(this).get(PatientViewModel.class);
+        hospitalViewModel = new ViewModelProvider(this).get(HospitalViewModel.class);
         nurse = new Nurse();
     }
 
@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity
         nurse.setDepartment(editTextNurseDepartment.getText().toString());
         nurse.setPassword(editTextNursePassword.getText().toString());
 
-        patientViewModel.insertNurse(nurse);
+        hospitalViewModel.insertNurse(nurse);
         Log.d(TAG, "the value is: " + nurse.getFirstName());
 
     }

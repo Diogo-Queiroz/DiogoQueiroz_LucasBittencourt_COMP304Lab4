@@ -15,4 +15,8 @@ public interface PatientsDao
 
     @Query("select * from Patient order by firstName")
     LiveData<List<Patient>> getAllPatients();
+
+    @Query("select * from Patient where nurseId = :nurseId")
+    LiveData<List<Patient>> getPatientsByNurseId(int nurseId);
+
 }

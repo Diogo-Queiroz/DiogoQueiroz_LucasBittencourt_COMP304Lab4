@@ -6,8 +6,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Patient
+public class Patient implements Serializable
 {
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -30,10 +32,9 @@ public class Patient
     private int nurseId;
 
     public Patient(){}
-    public Patient(int patientsId, String firstName, String lastName,
+    public Patient(String firstName, String lastName,
                    String department, String room, int nurseId)
     {
-        this.patientsId = patientsId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;

@@ -40,6 +40,12 @@ public class HospitalRepository
     {
         return mPatientsDao.getPatientsByNurseId(nurseId);
     }
+
+    LiveData<List<Test>> getTestsForNurse(int nurseId)
+    {
+        return mTestDao.getTestForNurse(nurseId);
+    }
+
     LiveData<List<Test>> getTestByPatientByNurse(int nurseId, int patientId)
     {
         mAllTestsByPatientByNurse = mTestDao.getTestsByPatientByNurse(nurseId, patientId);

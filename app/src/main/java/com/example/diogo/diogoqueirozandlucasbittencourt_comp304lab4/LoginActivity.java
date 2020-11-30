@@ -109,7 +109,6 @@ public class LoginActivity extends AppCompatActivity
             }
             catch (Error error)
             {
-                Log.d(TAG, "Error -> " + error.getMessage());
             }
         }
     }

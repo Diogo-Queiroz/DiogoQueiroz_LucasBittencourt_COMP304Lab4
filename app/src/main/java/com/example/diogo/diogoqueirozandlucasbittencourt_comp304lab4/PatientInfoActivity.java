@@ -72,6 +72,35 @@ public class PatientInfoActivity extends AppCompatActivity
 
     public void insertPatient(View view)
     {
+
+        if(firstName.getText().toString().isEmpty())
+        {
+            firstName.setError("Please, enter patient first name");
+            return;
+
+        }
+
+        if(lastName.getText().toString().isEmpty())
+        {
+            lastName.setError("Please, enter patient last name");
+            return;
+
+        }
+
+        if(department.getText().toString().isEmpty())
+        {
+            department.setError("Please, enter patient department");
+            return;
+
+        }
+
+        if(room.getText().toString().isEmpty())
+        {
+            room.setError("Please, enter patient room");
+            return;
+
+        }
+
         String fName = firstName.getText().toString();
         String lName = lastName.getText().toString();
         String dept = department.getText().toString();
@@ -85,6 +114,34 @@ public class PatientInfoActivity extends AppCompatActivity
 
     public void updatePatient(View view)
     {
+        if(firstName.getText().toString().isEmpty())
+        {
+            firstName.setError("Please, enter patient first name");
+            return;
+        }
+
+        if(lastName.getText().toString().isEmpty())
+        {
+            lastName.setError("Please, enter patient last name");
+            return;
+
+        }
+
+        if(department.getText().toString().isEmpty())
+        {
+            department.setError("Please, enter patient department");
+            return;
+
+        }
+
+        if(room.getText().toString().isEmpty())
+        {
+            room.setError("Please, enter patient room");
+            return;
+
+        }
+
+
         patient.setFirstName(firstName.getText().toString());
         patient.setLastName(lastName.getText().toString());
         patient.setDepartment(department.getText().toString());

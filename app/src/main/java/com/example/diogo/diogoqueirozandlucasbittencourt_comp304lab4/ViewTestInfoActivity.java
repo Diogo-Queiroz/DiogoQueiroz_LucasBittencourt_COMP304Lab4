@@ -1,9 +1,11 @@
 package com.example.diogo.diogoqueirozandlucasbittencourt_comp304lab4;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,6 +90,20 @@ public class ViewTestInfoActivity extends AppCompatActivity
     public void insertTest(View view)
     {
         Test newTest = new Test();
+
+        if (textViewTemperature.getText().toString().isEmpty() &&
+                textViewBPH.getText().toString().isEmpty() &&
+                textViewBPL.getText().toString().isEmpty() &&
+                textViewCholesterol.getText().toString().isEmpty()
+        )
+        {
+            textViewTemperature.setError("Please, enter information");
+            textViewBPH.setError("Please, enter information");
+            textViewBPL.setError("Please, enter information");
+            textViewCholesterol.setError("Please, enter information");
+            return;
+        }
+
         newTest.setTemperature(textViewTemperature.getText().toString());
         newTest.setBPH(textViewBPH.getText().toString());
         newTest.setBPL(textViewBPL.getText().toString());

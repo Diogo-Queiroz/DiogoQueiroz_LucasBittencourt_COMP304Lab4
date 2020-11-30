@@ -29,5 +29,26 @@
     <string name="back_to_login">Back to Login</string>
     <string name="register_account">Register Account</string>
     <string name="login_account">Login Account</string>
-    <string name="nurseGreeting">Hi %1$s</string>
+    <string name="nurseGreeting">Welcome %1$s</string>
+    <string name="nurseDepartment">Department: %1$s</string>
+    <string name="nursePatientCount">Total Patients: %1$d"</string>
+    <string name="nurseTestCount">Total Tests: %1$d"</string>
+    <string name="patients_list">Patients List</string>
+    <string name="newPatient">NEW PATIENT</string>
+    <string name="name">Name</string>
+    <string name="room">Room</string>
+    <string name="patient_info">Patient Info</string>
+    <string name="patient_first_name">Patient First Name</string>
+    <string name="patient_last_name">Patient Last Name</string>
+    <string name="patient_department">Patient Department</string>
+    <string name="patient_room">Patient Room</string>
+    <string name="add_or_update">ADD or UPDATE</string>
+    <string name="tests">TESTS</string>
+    <string name="temperature">Temperature</string>
+    <string name="bph">BPH</string>
+    <string name="bpl">BPL</string>
+    <string name="cholesterol">Cholesterol</string>
+    <string name="new_test">NEW TEST</string>
+    <string name="test_info_for_patientname">Test Info for PatientName</string>
+
 </resources>

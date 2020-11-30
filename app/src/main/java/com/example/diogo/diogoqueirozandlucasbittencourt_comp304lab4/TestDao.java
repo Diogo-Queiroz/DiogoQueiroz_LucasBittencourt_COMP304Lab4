@@ -24,4 +24,9 @@ public interface TestDao
 
     @Query("select * from nurse where nurseUsername=:username")
     Nurse getNurseByUsername(String username);
+
+    @Query("select * from tests where tests.nurseId=:nurseId")
+    LiveData<List<Test>> getTestForNurse(int nurseId);
+
+
 }

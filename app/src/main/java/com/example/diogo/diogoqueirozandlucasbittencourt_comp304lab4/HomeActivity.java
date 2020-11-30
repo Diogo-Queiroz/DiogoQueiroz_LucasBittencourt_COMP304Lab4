@@ -6,7 +6,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,25 +21,53 @@ public class HomeActivity extends AppCompatActivity {
 
     private HospitalViewModel hospitalViewModel;
     private ArrayList<Patient> patientsList = new ArrayList<>();
+    private Handler handler;
 
-    TextView nurseGreetingText, textViewNurseDepartment;
+    TextView nurseGreetingText, textViewNurseDepartment, patientsNumberText, testsNumberText;
     Nurse nurse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         hospitalViewModel = new ViewModelProvider(this).get(HospitalViewModel.class);
+        handler = new Handler();
 
         nurse = (Nurse) getIntent().getSerializableExtra("Nurse");
 
         nurseGreetingText = findViewById(R.id.nurseGreetingText);
         textViewNurseDepartment = findViewById(R.id.textViewDepartmentPlace);
-        String output = (String.format("Hi %s, \n" +
-                "Welcome to you home page.\n" +
-                "Here you see how many patients you have. \n\n", nurse.getFirstName()) +
-                "Clicking on the Patients button will take you to the list of patients under your responsibility.\n");
-        nurseGreetingText.setText(output);
-        textViewNurseDepartment.setText(String.format("Department:\n%s", nurse.getDepartment()));
+        patientsNumberText = findViewById(R.id.patientsTextView);
+        testsNumberText = findViewById(R.id.testCountText);
+
+        hospitalViewModel.getAllPatientsForNurse(nurse.getNurseId()).observe(this, new Observer<List<Patient>>() {
+            @Override
+            public void onChanged(List<Patient> patients) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        patientsNumberText.setText(getString(R.string.nursePatientCount, patients.size()));
+
+                    }
+                });
+            }
+        });
+
+        hospitalViewModel.getTestsForNurse(nurse.getNurseId()).observe(this, new Observer<List<Test>>() {
+            @Override
+            public void onChanged(List<Test> tests) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        testsNumberText.setText(getString(R.string.nurseTestCount, tests.size()));
+
+                    }
+                });
+            }
+        });
+
+
+        nurseGreetingText.setText(getResources().getString(R.string.nurseGreeting, nurse.getFirstName()));
+        textViewNurseDepartment.setText(getResources().getString(R.string.nurseDepartment, nurse.getDepartment()));
 
     }
 

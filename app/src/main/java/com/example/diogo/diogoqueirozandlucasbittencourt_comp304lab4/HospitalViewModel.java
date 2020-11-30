@@ -15,6 +15,7 @@ public class HospitalViewModel extends AndroidViewModel
     private LiveData<List<Nurse>> mAllNurses;
     private LiveData<List<Patient>> mPatientForNurse;
     private LiveData<List<Test>> mTestByPatientByNurse;
+    private LiveData<List<Test>> mTestForNurse;
 
     public HospitalViewModel(Application application)
     {
@@ -26,11 +27,19 @@ public class HospitalViewModel extends AndroidViewModel
 
     LiveData<List<Patient>> getAllPatients() {return mAllPatients;}
     LiveData<List<Nurse>> getAllNurses() {return mAllNurses;}
+
     LiveData<List<Patient>> getAllPatientsForNurse(int nurseId)
     {
         mPatientForNurse = mRepository.getPatientsForNurse(nurseId);
         return mPatientForNurse;
     }
+
+    LiveData<List<Test>> getTestsForNurse(int nurseId)
+    {
+        mTestForNurse = mRepository.getTestsForNurse(nurseId);
+        return mTestForNurse;
+    }
+
     Nurse getNurseByUsername(String username)
     {
         return mRepository.getNurseByUsername(username);
